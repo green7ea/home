@@ -1,0 +1,4 @@
+#!/bin/bash
+
+youtube-dl $@
+notify-send -t 3000 "Downloaded" "$@"

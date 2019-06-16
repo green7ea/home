@@ -1,0 +1,10 @@
+#!/usr/bin/env python3
+
+import sys
+import subprocess
+
+if __name__ == '__main__':
+    raw_level = int(sys.argv.pop())
+
+    level = max(min(raw_level, 100), 0)
+    subprocess.call(['ddcutil', '-d', '1', 'setvcp', '0x10', str(level)])

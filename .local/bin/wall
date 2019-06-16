@@ -1,0 +1,9 @@
+#!/bin/bash
+
+full_path=$(realpath "$1")
+sym_path="$HOME/bg.jpg"
+
+unlink "$sym_path"
+ln -s "$full_path" "$sym_path"
+
+swaymsg output "*" bg "$full_path" fill

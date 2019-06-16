@@ -1,0 +1,9 @@
+#!/bin/sh
+
+export XDG_RUNTIME_DIR=/run/user/1000/
+export QT_QPA_PLATFORM=wayland
+# export GDK_BACKEND=wayland
+export CLUTTER_BACKEND=wayland
+export SDL_VIDEODRIVER=wayland
+
+exec dbus-launch --exit-with-session sway

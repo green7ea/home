@@ -1,0 +1,9 @@
+#!/usr/bin/env python3
+
+import sys
+import subprocess
+
+if __name__ == '__main__':
+   current = float(subprocess.check_output(['brillo']).strip())
+   delta = int(sys.argv.pop())
+   subprocess.call(['brillo', '-S', str(current + delta)])

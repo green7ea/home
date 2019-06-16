@@ -1,0 +1,11 @@
+#!/bin/bash
+
+file=$(echo "$2" | sed "s|/|-|g").pdf
+wkhtmltopdf -n -g -s a5 \
+            --allow "/home/manu/.local/share/qutebrowser/userscripts/" \
+            "$1" "/tmp/$file"
+rmapi put "/tmp/$file"
+
+echo "Saving $1 to $file" > /tmp/remarkable.log
+notify-send -t 3000 "Download Complete" "$file"
+evince "/tmp/$file"

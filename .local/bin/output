@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+
+date >> /tmp/output.log
+RES="$(screenr $@)"
+echo "$RES" >> /tmp/output.log
+echo >> /tmp/output.log
+
+notify-send -t 5000 "$RES"
+
