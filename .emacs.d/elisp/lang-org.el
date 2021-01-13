@@ -1,31 +1,7 @@
-(defvar-local custom-head
-  (with-temp-buffer
-    (insert "<style type=\"text/css\">\n")
-    (insert-file-contents "~/.emacs.d/css/org.css")
-    (goto-char (point-max))
-    (insert "</style>\n")
-    (buffer-string)))
-
-(with-temp-buffer "*manu*"
-                  (princ custom-head))
-
 (use-package org
   :config
   (setq org-directory "~/roam"
-        org-default-notes-file (concat org-directory "/roam/todo.org")
-        org-html-head custom-head
-        org-html-head-include-default-style nil)
-  :bind (:map org-mode-map
-              ("C-c l" . org-store-link)
-              ("C-c a" . org-agenda)
-              ([f5] . org-html-export-to-html)))
-
-(use-package org-bullets
-  :config
-  (setq org-hide-leading-stars t)
-  (add-hook 'org-mode-hook
-            (lambda ()
-              (org-bullets-mode t))))
+        org-default-notes-file (concat org-directory "/roam/todo.org")))
 
 (use-package org-roam
       :ensure t
@@ -47,6 +23,20 @@
                ("C-c n g" . org-roam-graph))
               :map org-mode-map
               (("C-c n i" . org-roam-insert))
-              (("C-c n I" . org-roam-insert-immediate))))
+              (("C-c n I" . org-roam-insert-immediate))
+              (("M-." . org-follow-at-point))))
+
+(defun org-follow-at-point ()
+    "Follow the link under the cursor leaving a marker behind"
+    (interactive)
+    ; Shadowing org-link-frame-setup allows us to open the link in the
+    ; current buffer.
+    (let ((org-link-frame-setup (cons (cons 'file 'find-file)
+                                      org-link-frame-setup)))
+      ; Allows us to pop the marker stack to back track.
+      (xref-push-marker-stack)
+      (org-open-at-point)))
+
+(setq initial-buffer-choice "~/roam/index.org")
 
 (provide 'lang-org)

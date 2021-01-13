@@ -5,8 +5,13 @@
 (global-set-key [(f8)] 'counsel-projectile-find-file)
 (global-set-key [(f9)] 'magit-status)
 (global-set-key [(f10)] 'undo-only)
-(global-set-key [(f11)] 'undo-tree-visualize)
+(global-set-key [(f11)] 'yank-to-clipboard)
 (global-set-key [(f12)] 'kill-this-buffer)
+(global-set-key (kbd "M-<f12>") 'open-index)
+
+(defun open-index ()
+  (interactive)
+  (find-file "~/roam/index.org"))
 
 ; Using bind-key* here makes sure that these bindings cannot be
 ; overwritten by other modes.

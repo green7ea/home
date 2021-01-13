@@ -5,7 +5,7 @@
               ([f2] . lsp-find-references)
               ([f5] . cargo-process-check)
               ("C-<f5>" . cargo-process-build)
-              ([f6] . rust-format-buffer))
+              ([f6] . lsp-format-buffer))
 
   :mode
   ("\\.rs$" . rustic-mode))

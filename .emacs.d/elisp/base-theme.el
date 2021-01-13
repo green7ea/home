@@ -5,8 +5,8 @@
   (doom-one-brighter-comments t))
 
 (use-package doom-modeline
-      :ensure t
-      :hook (after-init . doom-modeline-mode))
+  :ensure t
+  :hook (after-init . doom-modeline-mode))
 
 (add-to-list 'default-frame-alist '(font . "FiraCode 13" ))
 (set-face-attribute 'default t :font "FiraCode 13" )
